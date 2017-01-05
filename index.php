@@ -20,6 +20,7 @@ if (file_exists($bmark_content_file)) {
 }
 $data_dir=$scrap_dir."/data";
 $atags="";
+echo "Using the data in $data_dir to generate index.html (bookmark page) ...<br>\n";
 foreach(new DirectoryIterator($data_dir) as $art_id) {
     //echo "<br>\n================<br>\n";
     if(in_array($art_id, array('.', '..'))) continue;
@@ -35,3 +36,4 @@ $scrap_bmark_index_html_content .= '</body></html>';
 //echo $scrap_bmark_index_html_content; exit;
 //file_put_contents(__DIR__."/index.html", utf8_encode($scrap_bmark_index_html_content));
 file_put_contents(__DIR__."/index.html", $scrap_bmark_index_html_content);
+echo "Done!";
