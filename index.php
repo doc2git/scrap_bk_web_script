@@ -14,7 +14,7 @@ function substr_art_title($html_file){
 
 $scrap_bmark_index_html_content="<!DOCTYPE><html><head><meta charset=utf-8><title>bookmark for scrapbook</title></head><body>";
 $scrap_dir = realpath('..');
-$bmark_content_file=__DIR__."/bmark_content.html";
+$bmark_content_file=__DIR__."/index.html";
 if (file_exists($bmark_content_file)) {
     unlink($bmark_content_file) or die("Cannot delete $bmark_content_file: $php_errormsg");
 }
@@ -23,7 +23,7 @@ $atags="";
 echo "Using the data in $data_dir to generate index.html (bookmark page) ...<br>\n";
 foreach(new DirectoryIterator($data_dir) as $art_id) {
     //echo "<br>\n================<br>\n";
-    if(in_array($art_id, array('.', '..'))) continue;
+    if(in_array($art_id, array('.', '..', '.git'))) continue;
     $art_index_file=__DIR__."/../data/${art_id}/index.html";
     $atag_inner=call_user_func('substr_art_title', $art_index_file);
     $atag="<a href='../data/${art_id}/index.html'>${atag_inner}</a><br>";
