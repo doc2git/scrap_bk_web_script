@@ -42,4 +42,5 @@ $scrap_bmark_index_html_content .= '</body></html>';
 //file_put_contents(__DIR__."/index.html", utf8_encode($scrap_bmark_index_html_content));
 file_put_contents(__DIR__."/index.html", $scrap_bmark_index_html_content);
 echo "Done! ".count($arr_art_id)." a-tags had been generated.<br>\n";
-echo "Enjoy it :)";
+echo "This is the bookmark site link: <a herf='./index.html'>Scrap Bookmark page</a><br>\n";
+echo "Enjoy it :)<br>\n";
