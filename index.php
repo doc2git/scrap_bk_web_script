@@ -14,10 +14,16 @@ function substr_art_title($html_file){
 
 $scrap_bmark_index_html_content="<!DOCTYPE><html><head><meta charset=utf-8><title>bookmark for scrapbook</title></head><body>";
 $scrap_dir = realpath('..');
-$bmark_content_file=__DIR__."/index.html";
-if (file_exists($bmark_content_file)) {
-    unlink($bmark_content_file) or die("Cannot delete $bmark_content_file: $php_errormsg");
+$index_temp_file=__DIR__."/index.htm";
+function rm_index($index) {
+    if (file_exists($index)) {
+        if (!(unlink($index))) {
+            echo "Cannot delete $index: $php_errormsg";
+            exit;
+        }
+    }
 }
+call_user_func("rm_index", $index_temp_file);
 $data_dir=$scrap_dir."/data";
 $atags="";
 echo "Using the data in $data_dir to generate index.html (bookmark page) ...<br>\n";
@@ -27,6 +33,8 @@ foreach(new DirectoryIterator($data_dir) as $art_id_origin_blob) {
     if(in_array($art_id_origin, array('.', '..', '.git'))) continue;
     array_unshift($arr_art_id, $art_id_origin);
 }
+$art_count = count($arr_art_id);
+$scrap_bmark_index_html_content .=  "<h3>This Scrap Bookmark page contains ".${art_count}." a-tags of site-notes.</h3>";
 foreach ($arr_art_id as $art_id) {
     //echo "<br>\n================<br>\n";
     $art_index_file=__DIR__."/../data/${art_id}/index.html";
@@ -38,9 +46,11 @@ foreach ($arr_art_id as $art_id) {
 }
 $scrap_bmark_index_html_content .= $atags;
 $scrap_bmark_index_html_content .= '</body></html>';
-//echo $scrap_bmark_index_html_content; exit;
-//file_put_contents(__DIR__."/index.html", utf8_encode($scrap_bmark_index_html_content));
-file_put_contents(__DIR__."/index.html", $scrap_bmark_index_html_content);
-echo "Done! ".count($arr_art_id)." a-tags had been generated.<br>\n";
+//echo $scrap_bmark_index_html_content;
+file_put_contents($index_temp_file, $scrap_bmark_index_html_content);
+$index_file=__DIR__."/index.html";
+call_user_func("rm_index", $index_file);
+copy($index_temp_file, $index_file);
+echo "Done! ".$art_count." a-tags had been generated.<br>\n";
 echo "This is the bookmark site link: <a herf='./index.html'>Scrap Bookmark page</a><br>\n";
 echo "Enjoy it :)<br>\n";
