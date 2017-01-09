@@ -1,5 +1,13 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
+function rm_index($index) {
+    if (file_exists($index)) {
+        if (!(unlink($index))) {
+            echo "Cannot delete $index: $php_errormsg";
+            exit;
+        }
+    }
+}
 function substr_art_title($html_file){
     $html_contents=file_get_contents($html_file); 
     $start_title_tag_index =  strpos($html_contents, '<title>');
@@ -15,14 +23,6 @@ function substr_art_title($html_file){
 $scrap_bmark_index_html_content="<!DOCTYPE><html><head><meta charset=utf-8><title>bookmark for scrapbook</title></head><body>";
 $scrap_dir = realpath('..');
 $index_temp_file=__DIR__."/index.htm";
-function rm_index($index) {
-    if (file_exists($index)) {
-        if (!(unlink($index))) {
-            echo "Cannot delete $index: $php_errormsg";
-            exit;
-        }
-    }
-}
 call_user_func("rm_index", $index_temp_file);
 $data_dir=$scrap_dir."/data";
 $atags="";
@@ -54,3 +54,13 @@ copy($index_temp_file, $index_file);
 echo "Done! ".$art_count." a-tags had been generated.<br>\n";
 echo "This is the bookmark site link: <a herf='./index.html'>Scrap Bookmark page</a><br>\n";
 echo "Enjoy it :)<br>\n";
+$execute_log_file = "./execute.log";
+if (!(file_exists($execute_log_file))){
+    $str_log = "";
+} else {
+    $str_log = file_get_contents("$execute_log_file");
+}
+//date.timezone = "Asia/Chongqing";
+$str_log_increase = "Executed at ".date('r').".\n";
+$str_log .= $str_log_increase;
+file_put_contents($execute_log_file, $str_log);
