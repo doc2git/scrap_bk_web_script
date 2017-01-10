@@ -1,4 +1,5 @@
 <?php
+//echo $_SERVER["DOCUMENT_ROOT"]; exit;
 error_reporting(E_ALL & ~E_NOTICE);
 
 //Next section, defindex functions will be used.
@@ -28,7 +29,8 @@ $index_temp_file=__DIR__."/index.htm";
 call_user_func("rm_index", $index_temp_file);
 $data_dir=$scrap_dir."/data";
 $atags="";
-echo '<!DOCTYPE><html><head><meta charset=utf-8><title>Generator</title><meta >';
+echo '<!DOCTYPE><html><head><meta http-equiv="pragma" content="no-cache"><meta charset=utf-8><title>Generator</title>';
+echo '<link rel="Shortcut Icon" href="'.$_SERVER["DOCUMENT_ROOT"].'/favicon.ico" type="image/x-icon" />';
 echo '<style>';
 echo 'body > h1,h2,#processing {text-align:center}';
 echo 'body > h1 {position:relative; left:-90px}';
@@ -40,7 +42,11 @@ echo '<div id="processing">';
 echo "Using the data in $data_dir to generate ./index.htm (bookmark page) ...<br>\n";
 
 //Next section, generate index.htm, and copy index.htm to index.html.
-$scrap_bmark_index_html_content="<!DOCTYPE><html><head><meta charset=utf-8><title>bookmark for scrapbook</title></head><body>";
+$scrap_bmark_index_html_content = "<!DOCTYPE><html><head>";
+$scrap_bmark_index_html_content = '<meta http-equiv="progma" content="no-cache">';
+$scrap_bmark_index_html_content = "<meta charset=utf-8><title>bookmark for scrapbook</title>";
+$scrap_bmark_index_html_content .= '<link rel="Shortcut Icon" href="'.$_SERVER["DOCUMENT_ROOT"].'/favicon.ico" type="image/x-icon" />';
+$scrap_bmark_index_html_content .= "</head><body>";
 $scrap_bmark_index_html_content .= '<div id="bk_atags">';
 $arr_art_id = array();
 foreach(new DirectoryIterator($data_dir) as $art_id_origin_blob) {
