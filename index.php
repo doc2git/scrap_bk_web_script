@@ -30,7 +30,7 @@ call_user_func("rm_index", $index_temp_file);
 $data_dir=$scrap_dir."/data";
 $atags="";
 echo '<!DOCTYPE><html><head><meta http-equiv="pragma" content="no-cache"><meta charset=utf-8><title>Generator</title>';
-echo '<link rel="Shortcut Icon" href="'.$_SERVER["DOCUMENT_ROOT"].'/favicon.ico" type="image/x-icon" />';
+echo '<link rel="Shortcut Icon" href="./favicon.ico" type="image/x-icon" />';
 echo '<style>';
 echo 'body > h1,h2,#processing {text-align:center}';
 echo 'body > h1 {position:relative; left:-90px}';
@@ -45,7 +45,7 @@ echo "Using the data in $data_dir to generate ./index.htm (bookmark page) ...<br
 $scrap_bmark_index_html_content = "<!DOCTYPE><html><head>";
 $scrap_bmark_index_html_content = '<meta http-equiv="progma" content="no-cache">';
 $scrap_bmark_index_html_content = "<meta charset=utf-8><title>bookmark for scrapbook</title>";
-$scrap_bmark_index_html_content .= '<link rel="Shortcut Icon" href="'.$_SERVER["DOCUMENT_ROOT"].'/favicon.ico" type="image/x-icon" />';
+$scrap_bmark_index_html_content .= '<link rel="Shortcut Icon" href="./favicon.ico" type="image/x-icon" />';
 $scrap_bmark_index_html_content .= "</head><body>";
 $scrap_bmark_index_html_content .= '<div id="bk_atags">';
 $arr_art_id = array();
