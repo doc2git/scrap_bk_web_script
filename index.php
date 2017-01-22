@@ -60,7 +60,7 @@ foreach ($arr_art_id as $art_id) {
     //echo "<br>\n================<br>\n";
     $art_index_file=__DIR__."/../data/${art_id}/index.html";
     $atag_inner=call_user_func('substr_art_title', $art_index_file);
-    $atag="<a href='../data/${art_id}/index.html'>${atag_inner}</a><br>";
+    $atag="<a target='_blank' href='../data/${art_id}/index.html'>${atag_inner}</a><br>";
     //echo $atag."<br>\n";
     $atags.=$atag;
     //$scrap_bmark_index_html_content .= $atag;
