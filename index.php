@@ -51,7 +51,7 @@ $scrap_bmark_index_html_content .= '<div id="bk_atags">';
 $arr_art_id = array();
 foreach(new DirectoryIterator($data_dir) as $art_id_origin_blob) {
     $art_id_origin = (string)$art_id_origin_blob;
-    if(in_array($art_id_origin, array('.', '..', '.git'))) continue;
+    if(in_array($art_id_origin, array('.', '..', '.git', 'favicon.ico.d'))) continue;
     array_unshift($arr_art_id, $art_id_origin);
 }
 $art_count = count($arr_art_id);
@@ -60,7 +60,7 @@ foreach ($arr_art_id as $art_id) {
     //echo "<br>\n================<br>\n";
     $art_index_file=__DIR__."/../data/${art_id}/index.html";
     $atag_inner=call_user_func('substr_art_title', $art_index_file);
-    $atag="<a target='_blank' href='../data/${art_id}/index.html'>${atag_inner}</a><br>";
+    $atag="<a target='_blank' href=\"get_content.php?art_id=${art_id}\">${atag_inner}</a><br>";
     //echo $atag."<br>\n";
     $atags.=$atag;
     //$scrap_bmark_index_html_content .= $atag;
@@ -93,7 +93,7 @@ if (!(file_exists($execute_log_file))){
 } else {
     $str_log = file_get_contents("$execute_log_file");
 }
-//date.timezone = "Asia/Chongqing";
+//date.timezone = "Asia/Shanghai";
 $str_log_increase = "Executed at ".date('r').".\n";
 $str_log .= $str_log_increase;
 file_put_contents($execute_log_file, $str_log);
