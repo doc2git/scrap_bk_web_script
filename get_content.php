@@ -5,6 +5,10 @@ $src_dir="../data/${art_id}";
 $index_html_content=file_get_contents("${src_dir}/index.html");
 $local_refer_pattern='/( src| href)(=(\"|\'))([^(\/)|(\")|(\')]*)(\"|\')/i';
 $local_refer_replacement="$1$2${src_dir}/$4\"";
+$index_html_content=iconv("UTF-8", "GB2312//IGNORE", $index_html_content);
+$index_html_content=str_replace( '<script charset="utf-8" ', '<script charset="gb2312" ', $index_html_content);
+$index_html_content=str_replace( '<script charset="UTF-8" ', '<script charset="GB2312" ', $index_html_content);
+$index_html_content=
 $index_html_content=preg_replace_callback(
     $local_refer_pattern,
     function ($matches) {

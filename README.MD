@@ -1,5 +1,7 @@
 ## Note:
-#### If without special intruduce, master branch's charset is for utf-8. 
+#### This is gb2312 version. 
+##### the get_content.php will get the contents of the index.html in ${data_dir}./${id}./ , and use iconv()  function to convert the charset which are generate by default by ScrapBook extension of firefox, from utf-8 to gb2312.
+##### Also, the field '<script charset="utf-8"' will be replace as '<script charset="gb2312"', and the 'pt charset="UTF-8"' will be replace as '<script charset="utf-8"'.
 ## HowTo:
 #### git clone this repo to ~/.mozilla/firefox/${hash}.default/scrapbook dir.
 #### run the php file to refresh the index.html to generate atags with "~/.mozilla/firefox/aagiok5y.default/scrapbook/data/${art_id}/index.html".
