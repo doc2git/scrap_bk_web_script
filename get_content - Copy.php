@@ -4,7 +4,7 @@ $art_id=$_GET['art_id'];
 $src_dir="../data/${art_id}";
 $index_html_content=file_get_contents("${src_dir}/index.html");
 $local_refer_pattern='/( src| href)(=(\"|\'))([^(\/)|(\")|(\')]*)(\"|\')/i';
-$local_refer_replacement="$1$2{$src_dir}/$4\"";
+$local_refer_replacement="$1$2${src_dir}/$4\"";
 $index_html_content=preg_replace_callback(
     $local_refer_pattern,
     function ($matches) {

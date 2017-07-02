@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Apache显示目录列表的配置方法 - 源码之家 </title>
+<meta name="keywords" content="Apache 显示 目录 列表 配置 方法">
+<meta name="description" content="
+我们可以通过修改Apache配置文件httpd.conf来实现显示文件目录列表，代码如下：
+
+DocumentRoot &quot;D:\WWW&quot;
+
+ Options Indexes
+ AllowOverride All
+ Order allow,deny
+ IndexOptions Charset=U..">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" href="favicon.ico">
+<script type="text/javascript" async="" src="about:blank"></script><script type="text/javascript" async="" src="about:blank"></script><script type="text/javascript" async="" src="about:blank"></script><script type="text/javascript" async="" src="about:blank"></script><script type="text/javascript" async="" src="about:blank"></script><script type="text/javascript" async="" src="about:blank"></script><script type="text/javascript" async="" src="about:blank"></script><script type="text/javascript" async="" src="about:blank"></script><script type="text/javascript" async="" src="about:blank"></script><script language="JavaScript">/* Code removed by ScrapBook */</script><script language="JavaScript" src="about:blank"></script></head>
+<body><div class="wrap"><div class="MainTable MainDivTable"><div class="Main"><table class="dragTable" id="view_article" width="100%" cellspacing="0" cellpadding="0" border="0" align="center"><tbody><tr><td class="middle"><table class="content" style="table-layout: fixed; overflow-wrap: break-word;" width="100%" cellspacing="0" cellpadding="0" align="center"><tbody><tr><td class="content_word" id="read_tpc" align="left"><font id="zoom" face="宋体"><span id="post1"><!--DOCUMENT_FRAGMENT-->我们可以通过修改Apache配置文件httpd.conf来实现显示文件目录列表，代码如下：<br>
+<br>
+<div style="border: 2px dotted rgb(190, 190, 190); margin: 5px; padding: 5px; background-color: rgb(253, 253, 223);">DocumentRoot&nbsp; "D:\WWW"<br>
+<br>
+&nbsp;&nbsp;&nbsp; Options Indexes<br>
+&nbsp;&nbsp;&nbsp; AllowOverride All<br>
+&nbsp;&nbsp;&nbsp; Order allow,deny<br>
+&nbsp;&nbsp;&nbsp; IndexOptions Charset=UTF-8<br>
+&nbsp;&nbsp;&nbsp; Allow from all<br>
+<br>
+<br>
+</div>
+<br>
+注意："D:\WWW"是网站的根目录，参数"Options Indexes"表示启用目录浏览，"IndexOptions Charset=UTF-8"设置字符集，以消除中文乱码。<br>
+<br>
+如果是添加的虚拟主机站点，加在虚拟主机配置文件vhosts.conf内修改以下代码：<br>
+<br>
+<div style="border: 2px dotted rgb(190, 190, 190); margin: 5px; padding: 5px; background-color: rgb(253, 253, 223);">&nbsp;</div>
+<br>
+&nbsp;&nbsp;&nbsp; Options Indexes<br>
+&nbsp;&nbsp;&nbsp; AllowOverride All<br>
+&nbsp;&nbsp;&nbsp; Order allow,deny<br>
+&nbsp;&nbsp;&nbsp; IndexOptions Charset=UTF-8<br>
+&nbsp;&nbsp;&nbsp; Allow from all<br>
+<br>
+<br>
+其中"D:\www.test.com"为所添加虚拟主机站点的根目录，"Options Indexes"表示启用目录浏览。<br>
+<br>
+修改好，保存，重启Apache服务，就可以了。<!--/DOCUMENT_FRAGMENT--></span></font></td></tr></tbody></table></td></tr></tbody></table></div></div></div></body>
+</html>
